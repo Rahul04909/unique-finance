@@ -1,0 +1,23 @@
+:root{--srv-text:#1f2c44;--srv-muted:#64748b;--srv-border:#e6eeff;--srv-chip-green:#dcfce7;--srv-chip-blue:#eaf2ff;--srv-chip-cyan:#d9f7ff;--srv-chip-orange:#ffe8c7;--srv-chip-pink:#ffe5e9}
+.services{background:#fff}
+.srv-container{max-width:1200px;margin:24px auto;padding:0 16px}
+.srv-grid{display:grid;gap:14px;grid-template-columns:repeat(6,minmax(0,1fr))}
+.srv-card{position:relative;background:#f3f7ff;border:1px solid var(--srv-border);border-radius:14px;padding:0;text-align:center;box-shadow:0 8px 18px rgba(12,41,106,.06);transition:transform .12s ease,box-shadow .12s ease}
+.srv-card:hover{transform:translateY(-2px);box-shadow:0 12px 24px rgba(12,41,106,.1)}
+.srv-card-link{display:block;padding:12px;border-radius:14px;text-decoration:none;color:inherit}
+.srv-ribbon{position:absolute;top:10px;left:50%;transform:translateX(-50%);padding:6px 12px;border-radius:12px;font-size:12px;font-weight:800;border:1px solid #dbeafe;box-shadow:0 6px 14px rgba(12,41,106,.08)}
+.ribbon-green{background:var(--srv-chip-green);color:#065f46}
+.ribbon-blue{background:var(--srv-chip-blue);color:#1e3a8a}
+.ribbon-cyan{background:var(--srv-chip-cyan);color:#0e7490}
+.ribbon-orange{background:var(--srv-chip-orange);color:#9a3412}
+.ribbon-pink{background:var(--srv-chip-pink);color:#9f1239}
+.srv-icon{height:74px;margin-top:24px;border-radius:12px;background:linear-gradient(180deg,#ffffff,#ffffff);display:flex;align-items:center;justify-content:center}
+.srv-icon-img{height:42px;width:auto;display:block}
+.srv-title{margin:12px 8px 2px;color:var(--srv-text);font-size:14px;font-weight:800}
+.srv-desc{margin:0 8px 12px;color:var(--srv-muted);font-size:12px}
+@media(max-width:1200px){.srv-grid{grid-template-columns:repeat(5,1fr)}}
+@media(max-width:1024px){.srv-grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:768px){.srv-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:640px){.srv-grid{grid-template-columns:repeat(2,1fr)}.srv-card-link{padding:10px}.srv-icon{height:66px;margin-top:20px}.srv-icon-img{height:36px}.srv-title{font-size:13px}.srv-ribbon{top:8px;padding:5px 10px;font-size:11px}}
+@media(max-width:420px){.srv-grid{grid-template-columns:repeat(2,1fr)}.srv-container{margin:18px auto}}
+@media(max-width:340px){.srv-grid{grid-template-columns:1fr}}

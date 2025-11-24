@@ -1,0 +1,114 @@
+:root{--hl-blue:#2f6fed;--hl-text:#0f172a;--hl-muted:#64748b;--hl-border:#e6eeff}
+.hl{background:#fff}
+.hl-container{max-width:1100px;margin:24px auto;padding:0 16px}
+.hl-hero{border:1px solid var(--hl-border);border-radius:16px;background:#f8fbff;box-shadow:0 12px 28px rgba(12,41,106,.06);padding:18px;margin-bottom:18px}
+.hero-copy h1{margin:0;font-size:28px;font-weight:900;color:#1f2937}
+.hero-copy p{margin:8px 0;color:var(--hl-muted)}
+.hero-points{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0 0 0;padding:0;list-style:none}
+.hero-points li{border:1px solid var(--hl-border);border-radius:999px;padding:8px 12px;background:#fff;font-weight:700;color:#334155}
+.hl-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:24px;align-items:start}
+.card{border:1px solid var(--hl-border);border-radius:16px;background:#fff;box-shadow:0 12px 28px rgba(12,41,106,.06);padding:18px}
+.card-title{font-size:18px;font-weight:800;color:#1f2937;margin-bottom:10px}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(160px,1fr));gap:12px}
+.field-group{display:flex;flex-direction:column;gap:6px}
+.field-group label{font-size:13px;font-weight:700;color:#334155}
+.field-group input,.field-group select{padding:12px;border-radius:12px;border:1px solid var(--hl-border);font-size:14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 14px;border-radius:12px;background:var(--hl-blue);color:#fff;border:0;font-weight:800;font-size:15px;margin-top:10px;cursor:pointer}
+.btn-secondary{background:#0b46c1;color:#fff}
+.list{margin:0;padding-left:18px;color:#334155}
+.list li{margin:6px 0}
+.cta-block{display:flex;align-items:center;justify-content:space-between;margin-top:12px;color:#334155}
+.alert{border-radius:12px;padding:10px;margin-bottom:10px}
+.alert-error{background:#fee2e2;color:#7f1d1d;border:1px solid #fecaca}
+.alert-success{background:#dcfce7;color:#14532d;border:1px solid #bbf7d0}
+.hl-faq{margin-top:20px}
+.hl-faq h2{text-align:center;font-size:22px;font-weight:900;color:#1f2937}
+.faq-list{max-width:800px;margin:10px auto 0 auto}
+.faq-list details{border:1px solid var(--hl-border);border-radius:12px;padding:10px 12px;background:#fff;margin-bottom:8px}
+.faq-list summary{cursor:pointer;font-weight:800;color:#0f172a}
+.faq-list details div{margin-top:8px;color:#334155}
+/* Eligibility table */
+.hl-elig{margin:18px 0}
+.elig-table{width:100%;border-collapse:separate;border-spacing:0}
+.elig-table thead th{background:#f8fbff;color:#0f172a;font-weight:900;padding:12px;border-bottom:1px solid var(--hl-border)}
+.elig-table tbody td{padding:12px;border-top:1px solid var(--hl-border);color:#334155;font-weight:700}
+.elig-table tbody tr:nth-child(even) td{background:#fcfdff}
+.elig-table th:first-child,.elig-table td:first-child{width:28%;font-weight:900;color:#1f2937}
+.chip{display:inline-block;margin:4px 6px 0 0;padding:8px 10px;border-radius:999px;border:1px solid var(--hl-border);background:#fff;color:#334155;font-weight:700}
+@media(max-width:520px){.elig-table thead{display:none}.elig-table tbody tr{display:block;margin:8px 0;border:1px solid var(--hl-border);border-radius:12px;overflow:hidden}.elig-table tbody td{display:block;width:100%}.elig-table tbody td:first-child{background:#f8fbff;font-weight:900;color:#0f172a}}
+.hl-nri{margin:18px 0}
+.nri-table{width:100%;border-collapse:collapse}
+.nri-table th,.nri-table td{border:2px solid var(--hl-border);padding:12px}
+.nri-table thead th{background:#0b46c1;color:#fff;font-weight:900}
+.ticks{margin:0;padding-left:18px}
+.ticks li{margin:6px 0;font-weight:700;color:#334155}
+@media(max-width:680px){.nri-table{font-size:14px}.nri-table thead th{font-size:15px}}
+/* Mobile transform for NRI table */
+@media(max-width:760px){
+  .nri-table thead{display:none}
+  .nri-table tbody tr{display:block;border:2px solid var(--hl-border);border-radius:12px;overflow:hidden;margin-bottom:12px}
+  .nri-table tbody td{display:block;border:0;border-top:1px solid var(--hl-border);padding:12px 12px 10px}
+  .nri-table tbody td:first-child{border-top:0}
+  .nri-table tbody td::before{content:attr(data-label);display:block;font-weight:900;color:#0f172a;margin-bottom:6px}
+  .ticks{list-style:none;padding:0;display:grid;grid-template-columns:1fr;gap:8px}
+  .ticks li{position:relative;padding-left:24px;font-weight:800;color:#0f172a}
+  .ticks li::before{content:"✓";position:absolute;left:0;top:0;color:#22c55e;font-weight:900}
+}
+/* Ad banner */
+.hl-ad{margin:18px 0}
+.ad-card{position:relative;border:1px solid var(--hl-border);border-radius:16px;overflow:hidden}
+.ad-img{width:100%;height:220px;object-fit:cover;display:block}
+.ad-overlay{position:absolute;inset:auto 16px 16px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.ad-text{font-weight:900;color:#0f172a;background:#ffffffcc;border-radius:12px;padding:8px 12px}
+/* EMI calculator */
+.hl-emi{margin:18px 0}
+.hl-emi h2{text-align:center;font-size:22px;font-weight:900;color:#1f2937;margin-bottom:12px}
+.emi-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:24px}
+.emi-break{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+.break-item{border:1px solid var(--hl-border);border-radius:12px;padding:10px;background:#f8fbff;color:#334155;font-weight:700}
+.break-val{font-weight:900;color:#0b46c1;margin-top:4px}
+.result-top{display:flex;gap:16px;align-items:center;justify-content:space-between}
+.result-main{display:flex;align-items:flex-start;gap:12px}
+.result-value{font-size:32px;font-weight:900;color:#0b46c1;line-height:1}
+.result-badge{display:inline-flex;align-items:center;padding:6px 10px;border-radius:999px;font-size:13px;font-weight:800}
+.badge-under{background:#e0f2fe;color:#0c4a6e}
+.badge-normal{background:#dcfce7;color:#14532d}
+.badge-over{background:#fef3c7;color:#7c2d12}
+.badge-very{background:#fee2e2;color:#7f1d1d}
+.result-range{text-align:right;color:#334155}
+.range-values{font-weight:800}
+.gauge{margin-top:14px;position:relative;padding-top:16px;padding-bottom:16px}
+.gauge-track{position:relative;height:24px;border-radius:999px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr 1fr 1fr}
+.seg{display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff}
+.seg1{background:#60a5fa}
+.seg2{background:#22c55e}
+.seg3{background:#f59e0b}
+.seg4{background:#ef4444}
+.indicator{position:absolute;left:0;transform:translateX(-50%);width:0;height:0;z-index:2}
+.indicator-top{top:0;border-left:7px solid transparent;border-right:7px solid transparent;border-bottom:12px solid #0b46c1;filter:drop-shadow(0 1px 0 rgba(12,41,106,.15))}
+.indicator-bottom{bottom:0;border-left:7px solid transparent;border-right:7px solid transparent;border-top:12px solid #0b46c1;filter:drop-shadow(0 -1px 0 rgba(12,41,106,.15))}
+@media(max-width:980px){.emi-grid{grid-template-columns:1fr}}
+@media(max-width:980px){.hl-grid{grid-template-columns:1fr}}
+@media(max-width:520px){.fields{grid-template-columns:1fr}}
+/* Offers */
+.hl-offers{margin:24px 0}
+.hl-offers h2{text-align:center;font-size:22px;font-weight:900;color:#1f2937;margin-bottom:12px}
+.offer-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.offer-card{border:1px solid var(--hl-border);border-radius:16px;background:#fff;box-shadow:0 12px 28px rgba(12,41,106,.06);padding:16px}
+.offer-head{display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;column-gap:12px;row-gap:4px;align-items:center;margin-bottom:8px}
+.bank-logo{border-radius:12px;width:64px;height:64px;object-fit:contain;background:#fff}
+.bank-fallback{display:flex;align-items:center;justify-content:center;font-weight:900;color:#0f172a;border:1px solid var(--hl-border)}
+.bank-name{font-weight:900;color:#0f172a}
+.bank-tag{font-weight:800;color:#334155}
+.offer-list{margin:0;padding-left:18px;color:#334155}
+.offer-list li{margin:6px 0;font-weight:700}
+@media(max-width:980px){.offer-grid{grid-template-columns:1fr}}
+.hl-charges{margin:24px 0}
+.hl-charges h2{text-align:center;font-size:22px;font-weight:900;color:#1f2937;margin-bottom:12px}
+.charges-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.charge-card{position:relative;border:1px solid var(--hl-border);border-radius:16px;background:#fff;box-shadow:0 12px 28px rgba(12,41,106,.06);padding:16px;display:flex;flex-direction:column;gap:8px}
+.charge-card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#2f6fed,#0b46c1)}
+.charge-name{font-weight:900;color:#0f172a;font-size:16px}
+.charge-desc{color:#334155;font-weight:700;line-height:1.7}
+@media(max-width:980px){.charges-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.charges-grid{grid-template-columns:1fr}}

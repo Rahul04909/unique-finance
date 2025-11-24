@@ -1,0 +1,33 @@
+:root{--calc-blue:#2f6fed;--calc-dark:#0f1e4b;--calc-text:#0f172a;--calc-muted:#64748b;--calc-border:#e6eeff;--calc-green:#16a34a;--calc-purple:#7c3aed}
+.calculators{background:#fff}
+.calc-container{max-width:1200px;margin:26px auto;padding:0 16px}
+.calc-header{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.calc-title{color:#1f2c44;font-size:28px;font-weight:800;margin:0}
+.calc-subtitle{color:var(--calc-muted);font-size:14px;margin:0}
+.calc-slider{position:relative;overflow:hidden}
+.calc-track{display:flex;gap:0;transition:transform .35s ease;transform:translateX(calc(var(--calc-index,0)*-100%))}
+.calc-group{flex:0 0 100%;min-width:100%;box-sizing:border-box}
+.calc-cards{display:grid}
+.calc-group{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.calc-card{background:#fff;border:1px solid var(--calc-border);border-radius:12px;box-shadow:0 8px 18px rgba(12,41,106,.06);overflow:hidden}
+.calc-card-head{display:flex;align-items:center;justify-content:space-between;padding:12px;border-bottom:1px solid var(--calc-border)}
+.head-green{background:#dcfce7}
+.head-blue{background:#eaf2ff}
+.head-purple{background:#efeaff}
+.cch-title{font-weight:800;color:#1f2c44}
+.cch-illus{opacity:.95}
+.calc-list{list-style:none;margin:0;padding:0}
+.calc-list li{border-top:1px solid var(--calc-border)}
+.calc-list a{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;text-decoration:none;color:#1f2c44;font-weight:600}
+.calc-list a .arr{color:#7b8ab6}
+.calc-list a:hover{background:#f7faff}
+.calc-nav{display:flex;align-items:center;justify-content:center;gap:10px;margin:12px 0 8px}
+.calc-prev,.calc-next{width:32px;height:32px;border-radius:50%;background:#fff;border:1px solid var(--calc-border);color:var(--calc-blue);display:inline-flex;align-items:center;justify-content:center;box-shadow:0 6px 14px rgba(12,41,106,.12)}
+.calc-dots{display:flex;gap:8px}
+.calc-dots .dot{width:8px;height:8px;border-radius:50%;border:0;background:#d2daf5}
+.calc-dots .dot.active{background:var(--calc-blue)}
+.calc-ctas{display:flex;gap:12px;justify-content:center;margin-top:8px}
+.calc-btn{display:inline-flex;align-items:center;padding:10px 14px;border-radius:24px;border:1.5px solid var(--calc-blue);color:var(--calc-blue);text-decoration:none;font-weight:800;background:#fff}
+@media(max-width:1024px){.calc-group{grid-template-columns:repeat(2,1fr)}.cch-illus{display:none}}
+@media(max-width:640px){.calc-group{grid-template-columns:1fr}.calc-title{font-size:24px}.calc-subtitle{font-size:13px}.calc-btn{padding:9px 12px;font-size:13px}}
+@media(prefers-reduced-motion: reduce){.calc-track{transition:none}}

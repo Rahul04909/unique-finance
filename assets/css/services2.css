@@ -1,0 +1,20 @@
+:root{--srv2-text:#1f2c44;--srv2-muted:#64748b;--srv2-border:#e6eeff;--srv2-green:#16a34a;--srv2-blue:#2f6fed}
+.services2{background:#fff}
+.srv2-container{max-width:1200px;margin:24px auto;padding:0 16px}
+.srv2-heading{margin:10px 10px 8px;color:var(--srv2-text);font-size:18px;font-weight:800;display:flex;align-items:center;gap:10px}
+.srv2-badge{display:inline-flex;align-items:center;padding:6px 10px;border-radius:12px;background:#f3f7ff;color:#4b5ea6;font-size:12px;font-weight:800;border:1px solid var(--srv2-border)}
+.srv2-grid{display:grid;gap:12px;grid-template-columns:repeat(8,minmax(0,1fr))}
+.srv2-card{background:#f3f7ff;border:1px solid var(--srv2-border);border-radius:12px;padding:12px;text-align:center;box-shadow:0 8px 18px rgba(12,41,106,.06);position:relative}
+.srv2-icon{height:64px;border-radius:12px;background:linear-gradient(180deg,#ffffff,#ffffff);display:flex;align-items:center;justify-content:center;margin-bottom:8px;position:relative}
+.srv2-icon-img{height:40px;width:auto;display:block}
+.srv2-title{color:var(--srv2-text);font-size:14px;font-weight:800}
+.srv2-sub{color:var(--srv2-muted);font-size:12px}
+.srv2-ribbon{margin-top:-32px;position:absolute;top:10px;left:50%;transform:translateX(-50%);z-index:3;padding:6px 12px;border-radius:12px;background:#eaf7ee;color:#065f46;border:1px solid #b7e7c2;box-shadow:0 6px 14px rgba(12,41,106,.08);font-size:12px;font-weight:800;letter-spacing:.2px}
+.ribbon-green{background:#dcfce7;color:#065f46;border-color:#b7e7c2}
+.ribbon-blue{background:#eaf2ff;color:#1e3a8a;border-color:#bcc9ff}
+@media(max-width:1200px){.srv2-grid{grid-template-columns:repeat(6,1fr)}}
+@media(max-width:1024px){.srv2-grid{grid-template-columns:repeat(5,1fr)}}
+@media(max-width:768px){.srv2-grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:640px){.srv2-grid{grid-template-columns:repeat(3,1fr)}.srv2-heading{font-size:16px}.srv2-icon-img{height:32px}.srv2-ribbon{top:8px;padding:5px 10px;font-size:11px}}
+@media(max-width:420px){.srv2-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:340px){.srv2-grid{grid-template-columns:1fr}}
