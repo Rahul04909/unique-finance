@@ -590,5 +590,6 @@ $successMsg = 'Your home loan request has been submitted.';
       </section>
     </div>
   </section>
+  <?php include __DIR__.'/../loans-footer.php'; ?>
 </body>
 </html>

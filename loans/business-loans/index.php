@@ -213,7 +213,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <a class="btn" href="#businessLoanForm">Apply Now</a>
           </div>
         </div>
-      </section>
+</section>
+
       <section class="bl-features">
         <div class="card">
           <div class="card-title">Why choose our Business Loans</div>
@@ -287,6 +288,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
       </section>
     </div>
+     <?php include __DIR__.'/../loans-footer.php'; ?>
   </section>
   <script type="application/ld+json">
   {
