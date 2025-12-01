@@ -6,5 +6,5 @@ Disallow: /database/
 Disallow: /insert-db/
 Disallow: /component/
 Disallow: /includes/
-Sitemap: http://localhost/dendyal/sitemap-index.xml
-Sitemap: http://localhost/dendyal/sitemap-1.xml.gz
+Sitemap: http://uniquefinancegroup.com/dendyal/sitemap-index.xml
+Sitemap: http://uniquefinancegroup.com/dendyal/sitemap-1.xml.gz
