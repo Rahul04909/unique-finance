@@ -5,6 +5,7 @@ require_once __DIR__.'/../../vendor/autoload.php';
 use samdark\sitemap\Sitemap;
 use samdark\sitemap\Index;
 use samdark\sitemap\TempFileGZIPWriter;
+use samdark\sitemap\PlainFileWriter;
 $root = dirname(__DIR__, 2);
 $scheme = (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO']) ? $_SERVER['HTTP_X_FORWARDED_PROTO'] : (((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443)) ? 'https' : 'http');
 $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
@@ -21,7 +22,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
       $indexPath = $root.'/sitemap-index.xml';
       $mapGzPath = $root.'/sitemap-1.xml.gz';
-      $sitemap = new Sitemap(new TempFileGZIPWriter($mapGzPath));
+      $mapXmlPath = $root.'/sitemap-1.xml';
+      $useGzip = function_exists('gzopen');
+      $writer = $useGzip ? new TempFileGZIPWriter($mapGzPath) : new PlainFileWriter($mapXmlPath);
+      $sitemap = new Sitemap($writer);
       $urls = [];
       $home = $root.'/index.php';
       $urls[] = ['url' => $baseUrl.'/', 'path' => $home, 'freq' => 'daily', 'prio' => 1.0];
@@ -40,9 +44,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       foreach ($urls as $u) { addUrl($sitemap, $u['url'], $u['path'], $u['freq'], $u['prio']); $log[] = $u['url']; }
       $sitemap->write();
       $index = new Index($indexPath);
-      $index->addSitemap($baseUrl.'/sitemap-1.xml.gz', time());
+      $index->addSitemap($baseUrl.'/sitemap-1.xml'.($useGzip?'.gz':''), time());
       $index->write();
-      $robots = "User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /vendor/\nDisallow: /database/\nDisallow: /insert-db/\nDisallow: /component/\nDisallow: /includes/\nSitemap: ".$baseUrl."/sitemap-index.xml\nSitemap: ".$baseUrl."/sitemap-1.xml.gz\n";
+      $robots = "User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /vendor/\nDisallow: /database/\nDisallow: /insert-db/\nDisallow: /component/\nDisallow: /includes/\nSitemap: ".$baseUrl."/sitemap-index.xml\nSitemap: ".$baseUrl."/sitemap-1.xml".($useGzip?".gz":"")."\n";
       file_put_contents($root.'/robots.txt', $robots);
       $ht = [];
       $ht[] = 'Options -Indexes';
@@ -58,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $ht[] = 'RewriteRule ^(.+)$ $1.php [L,QSA]';
       file_put_contents($root.'/.htaccess', implode("\n", $ht));
       $message = 'Sitemap generated';
-    } catch (Throwable $e) { $error = 'Generation failed'; }
+    } catch (Throwable $e) { $error = 'Generation failed: '.htmlspecialchars($e->getMessage(), ENT_QUOTES); }
   }
 }
 ?>
