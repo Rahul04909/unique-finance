@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <meta name="twitter:description" content="<?php echo htmlspecialchars($seoDescription, ENT_QUOTES); ?>">
   <meta name="twitter:image" content="<?php echo htmlspecialchars($ogImage, ENT_QUOTES); ?>">
   <style>
-    :root{--bg:#f7f8fc;--text:#0f172a;--muted:#64748b;--border:#e5e7eb;--card:#ffffff;--primary:#0b46c1}
+    .bl{--bg:#f7f8fc;--text:#0f172a;--muted:#64748b;--border:#e5e7eb;--card:#ffffff;--primary:#0b46c1}
     .bl *, .bl *::before, .bl *::after{box-sizing:border-box}
     body{margin:0}
     .bl{padding:18px;background:var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
@@ -64,16 +64,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     .bl .hero-copy h1{font-size:36px;line-height:1.15;margin:0 0 10px;font-weight:900}
     .bl .hero-copy p{font-size:16px;color:var(--muted);font-weight:600}
     .bl .hero-points{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:16px 0 0;padding:0;list-style:none}
-    .bl .hero-points li{display:inline-flex;align-items:center;padding:8px 12px;border-radius:999px;background:#fff;border:1px solid var(--border);font-weight:800;color:#0b46c1}
+    .bl .hero-points li{display:inline-flex;align-items:center;padding:8px 12px;border-radius:999px;background:#fff;border:1px solid var(--border);font-weight:800;color:#0b46c1;position:relative;padding-left:28px}
+    .bl .hero-points li::before{content:"✓";position:absolute;left:10px;color:#16a34a;font-weight:900}
     .bl-grid{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-top:18px}
-    .bl .card{background:#fff;border:1px solid var(--border);border-radius:16px;box-shadow:0 10px 30px rgba(2,6,23,.08);padding:16px}
+    .bl .card{background:#fff;border:1px solid var(--border);border-radius:16px;box-shadow:0 10px 30px rgba(2,6,23,.08);padding:16px;transition:box-shadow .2s ease, transform .2s ease}
+    .bl .card:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(2,6,23,.12)}
     .bl .card-title{font-weight:900;margin-bottom:12px}
     .bl .fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .bl #businessLoanForm{scroll-margin-top:80px}
     .bl .field-group{display:flex;flex-direction:column;gap:6px}
     .bl .field-group label{font-size:12px;color:var(--muted);font-weight:800}
-    .bl .field-group input,.bl .field-group select{padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:#fff;color:var(--text);font-weight:600}
-    .bl .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 16px;border-radius:12px;border:1px solid var(--border);background:#ffffff;color:var(--text);font-weight:900}
-    .bl .btn-primary{background:rgba(11,70,193,.08);border-color:rgba(11,70,193,.22);color:#0b46c1}
+    .bl .field-group input,.bl .field-group select{padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:#fff;color:var(--text);font-weight:600;transition:border-color .2s ease, box-shadow .2s ease}
+    .bl .field-group input:focus,.bl .field-group select:focus{outline:none;border-color:#7aa2ff;box-shadow:0 0 0 4px rgba(11,70,193,.12)}
+    .bl .btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 16px;border-radius:12px;border:1px solid var(--border);background:#ffffff;color:var(--text);font-weight:900;transition:all .2s ease}
+    .bl .btn:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(2,6,23,.08)}
+    .bl .btn-primary{background:var(--primary);border-color:var(--primary);color:#ffffff}
+    .bl .btn-primary:hover{filter:brightness(1.05)}
     .bl .alert{margin:10px 0;padding:10px;border-radius:12px}
     .bl .alert-error{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);color:#ef4444}
     .bl .alert-success{background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.25);color:#16a34a}
@@ -90,6 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     .bl-elig{margin-top:24px}
     .bl .elig-table{width:100%;border-collapse:collapse}
     .bl .elig-table th,.bl .elig-table td{padding:10px;border-bottom:1px solid var(--border);text-align:left}
+    .bl .elig-table tbody tr:nth-child(odd){background:#fafbff}
     .bl .chip{display:inline-flex;align-items:center;padding:6px 10px;border-radius:999px;border:1px solid var(--border);background:#fff;font-weight:800;color:#0b46c1}
     .bl-faq{margin-top:24px}
     .bl .faq-item{border:1px solid var(--border);border-radius:12px;padding:12px;background:#fff}
@@ -125,23 +132,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               <div class="fields">
                 <div class="field-group">
                   <label for="name">Full name</label>
-                  <input type="text" id="name" name="name" required>
+                  <input type="text" id="name" name="name" required autocomplete="name">
                 </div>
                 <div class="field-group">
                   <label for="mobile">Mobile</label>
-                  <input type="tel" id="mobile" name="mobile" required inputmode="numeric" pattern="[0-9]{10}" placeholder="9876543210">
+                  <input type="tel" id="mobile" name="mobile" required inputmode="numeric" pattern="[0-9]{10}" placeholder="9876543210" autocomplete="tel">
                 </div>
                 <div class="field-group">
                   <label for="email">Email</label>
-                  <input type="email" id="email" name="email" required>
+                  <input type="email" id="email" name="email" required autocomplete="email">
                 </div>
                 <div class="field-group">
                   <label for="city">City</label>
-                  <input type="text" id="city" name="city" required>
+                  <input type="text" id="city" name="city" required autocomplete="address-level2">
                 </div>
                 <div class="field-group">
                   <label for="business">Business type</label>
-                  <select id="business" name="business">
+                  <select id="business" name="business" autocomplete="organization">
                     <option value="Proprietorship">Proprietorship</option>
                     <option value="Partnership">Partnership</option>
                     <option value="LLP">LLP</option>
@@ -150,15 +157,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
                 <div class="field-group">
                   <label for="turnover">Annual turnover (₹)</label>
-                  <input type="number" id="turnover" name="turnover" min="100000" step="1000" inputmode="decimal" placeholder="2500000">
+                  <input type="number" id="turnover" name="turnover" min="100000" step="1000" inputmode="decimal" placeholder="2500000" autocomplete="off">
                 </div>
                 <div class="field-group">
                   <label for="loan_amount">Loan amount (₹)</label>
-                  <input type="number" id="loan_amount" name="loan_amount" min="100000" step="1000" inputmode="decimal" placeholder="1000000" required>
+                  <input type="number" id="loan_amount" name="loan_amount" min="100000" step="1000" inputmode="decimal" placeholder="1000000" required autocomplete="off">
                 </div>
                 <div class="field-group">
                   <label for="tenure_years">Tenure (years)</label>
-                  <input type="number" id="tenure_years" name="tenure_years" min="1" max="10" step="1" inputmode="numeric" placeholder="5" required>
+                  <input type="number" id="tenure_years" name="tenure_years" min="1" max="10" step="1" inputmode="numeric" placeholder="5" required autocomplete="off">
                 </div>
               </div>
               <button type="submit" class="btn btn-primary">Apply Now</button>
