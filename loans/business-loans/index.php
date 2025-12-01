@@ -86,6 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     .bl-info .list{margin:0;padding-left:18px}
     .bl .cta-block{margin-top:12px;display:flex;align-items:center;justify-content:space-between}
     .bl .cta-block .btn{padding:10px 12px}
+    .bl #businessLoanForm .btn{margin-top:12px}
     .bl .btn-block{width:100%}
     .bl .form-badges{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 12px}
     .bl .form-badges .chip{background:#f1f5ff;border-color:rgba(11,70,193,.22);color:#0b46c1}
