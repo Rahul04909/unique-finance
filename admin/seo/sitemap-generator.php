@@ -10,6 +10,7 @@ $root = dirname(__DIR__, 2);
 $scheme = (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO']) ? $_SERVER['HTTP_X_FORWARDED_PROTO'] : (((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443)) ? 'https' : 'http');
 $host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost';
 $baseUrl = $scheme.'://'.$host;
+$supportsGzip = extension_loaded('zlib');
 $message = null; $error = null; $log = [];
 function addUrl($sitemap, $url, $path, $freq='weekly', $prio=0.7){
   $last = file_exists($path) ? filemtime($path) : time();
@@ -21,11 +22,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   if (!$error) {
     try {
       $indexPath = $root.'/sitemap-index.xml';
-      $mapGzPath = $root.'/sitemap-1.xml.gz';
-      $mapXmlPath = $root.'/sitemap-1.xml';
-      $useGzip = function_exists('gzopen');
-      $writer = $useGzip ? new TempFileGZIPWriter($mapGzPath) : new PlainFileWriter($mapXmlPath);
-      $sitemap = new Sitemap($writer);
+      $useGzip = $supportsGzip;
+      $mapPath = $root.'/sitemap-1.xml'.($useGzip?'.gz':'');
+      $sitemap = new Sitemap($mapPath);
+      if ($useGzip) { $sitemap->setUseGzip(true); }
       $urls = [];
       $home = $root.'/index.php';
       $urls[] = ['url' => $baseUrl.'/', 'path' => $home, 'freq' => 'daily', 'prio' => 1.0];
@@ -111,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php if($message && $log){ echo '<h3 style="margin-top:12px">Included URLs</h3><ul class="list">'; foreach($log as $u){ echo '<li class="card" style="padding:10px">'.htmlspecialchars($u,ENT_QUOTES).'</li>'; } echo '</ul>'; } ?>
         <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
           <a class="btn" href="/sitemap-index.xml" target="_blank">View sitemap-index.xml</a>
-          <a class="btn" href="/sitemap-1.xml.gz" target="_blank">Download sitemap-1.xml.gz</a>
+          <a class="btn" href="/sitemap-1.xml<?php echo $supportsGzip?'.gz':''; ?>" target="_blank">Download sitemap-1.xml<?php echo $supportsGzip?'.gz':''; ?></a>
           <a class="btn" href="/robots.txt" target="_blank">View robots.txt</a>
         </div>
       </div>
