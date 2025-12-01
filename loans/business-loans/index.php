@@ -86,6 +86,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     .bl-info .list{margin:0;padding-left:18px}
     .bl .cta-block{margin-top:12px;display:flex;align-items:center;justify-content:space-between}
     .bl .cta-block .btn{padding:10px 12px}
+    .bl .btn-block{width:100%}
+    .bl .form-badges{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 12px}
+    .bl .form-badges .chip{background:#f1f5ff;border-color:rgba(11,70,193,.22);color:#0b46c1}
     .bl-ad{margin-top:18px}
     .bl .ad-card{position:relative;overflow:hidden;border-radius:16px}
     .bl .ad-img{width:100%;height:auto;display:block}
@@ -99,9 +102,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     .bl .elig-table tbody tr:nth-child(odd){background:#fafbff}
     .bl .chip{display:inline-flex;align-items:center;padding:6px 10px;border-radius:999px;border:1px solid var(--border);background:#fff;font-weight:800;color:#0b46c1}
     .bl-faq{margin-top:24px}
-    .bl .faq-item{border:1px solid var(--border);border-radius:12px;padding:12px;background:#fff}
-    .bl .faq-q{font-weight:900}
-    .bl .faq-a{color:var(--muted);font-weight:600}
+    .bl .faq-list{display:flex;flex-direction:column;gap:10px}
+    .bl .faq{border:1px solid var(--border);border-radius:12px;background:#fff}
+    .bl .faq summary{padding:12px;cursor:pointer;font-weight:900;display:flex;align-items:center;justify-content:space-between}
+    .bl .faq summary::-webkit-details-marker{display:none}
+    .bl .faq summary::after{content:"+";color:#0b46c1;font-weight:900}
+    .bl .faq[open] summary::after{content:"–"}
+    .bl .faq .faq-a{padding:0 12px 12px;color:var(--muted);font-weight:600}
+    .bl .faq{transition:border-color .2s ease, box-shadow .2s ease}
+    .bl .faq[open]{border-color:rgba(11,70,193,.35);box-shadow:0 6px 16px rgba(2,6,23,.06)}
+    .bl .form-note{margin-top:8px;color:var(--muted);font-size:12px;font-weight:600;text-align:center}
     @media(max-width:960px){.bl-grid{grid-template-columns:1fr}.bl .features-grid{grid-template-columns:repeat(2,1fr)}}
     @media(max-width:640px){.bl .fields{grid-template-columns:1fr}.bl .features-grid{grid-template-columns:1fr}.bl .hero-copy h1{font-size:28px}}
   </style>
@@ -126,6 +136,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="bl-form">
           <div class="card">
             <div class="card-title">Apply for Business Loan</div>
+            <div class="form-badges">
+              <span class="chip">Secure</span>
+              <span class="chip">2 min</span>
+              <span class="chip">No credit score impact</span>
+            </div>
             <?php if($error): ?><div class="alert alert-error"><?php echo htmlspecialchars($error, ENT_QUOTES); ?></div><?php endif; ?>
             <?php if($submitted && !$error): ?><div class="alert alert-success"><?php echo htmlspecialchars($successMsg, ENT_QUOTES); ?></div><?php endif; ?>
             <form method="post" id="businessLoanForm" novalidate>
@@ -168,7 +183,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                   <input type="number" id="tenure_years" name="tenure_years" min="1" max="10" step="1" inputmode="numeric" placeholder="5" required autocomplete="off">
                 </div>
               </div>
-              <button type="submit" class="btn btn-primary">Apply Now</button>
+              <button type="submit" class="btn btn-primary btn-block">Apply Now</button>
+              <div class="form-note">By submitting, you agree to receive updates over call/SMS.</div>
             </form>
           </div>
         </div>
@@ -253,9 +269,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <section class="bl-faq">
         <div class="card">
           <div class="card-title">Frequently Asked Questions</div>
-          <div class="faq-item"><div class="faq-q">What is the interest rate?</div><div class="faq-a">Rates vary by lender and profile; typical range is 10%–24% p.a.</div></div>
-          <div class="faq-item"><div class="faq-q">Is collateral required?</div><div class="faq-a">Secured and collateral‑free options exist depending on eligibility.</div></div>
-          <div class="faq-item"><div class="faq-q">How long does approval take?</div><div class="faq-a">Initial approval may be as quick as 24–48 hours post document verification.</div></div>
+          <div class="faq-list">
+            <details class="faq">
+              <summary>What is the interest rate?</summary>
+              <div class="faq-a">Rates vary by lender and profile; typical range is 10%–24% p.a.</div>
+            </details>
+            <details class="faq">
+              <summary>Is collateral required?</summary>
+              <div class="faq-a">Secured and collateral‑free options exist depending on eligibility.</div>
+            </details>
+            <details class="faq">
+              <summary>How long does approval take?</summary>
+              <div class="faq-a">Initial approval may be as quick as 24–48 hours post document verification.</div>
+            </details>
+          </div>
         </div>
       </section>
     </div>
@@ -295,6 +322,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           e.preventDefault();
           alert('Please enter valid mobile and email');
         }
+      });
+      var faqs = document.querySelectorAll('.bl .faq');
+      faqs.forEach(function(d){
+        d.addEventListener('toggle', function(){
+          if (d.open) {
+            faqs.forEach(function(o){ if (o !== d) o.open = false; });
+          }
+        });
       });
     })();
   </script>
