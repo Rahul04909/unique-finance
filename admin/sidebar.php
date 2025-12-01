@@ -12,6 +12,7 @@
           <li><a class="as-sublink" href="#">New Applications</a></li>
           <li><a class="as-sublink" href="#">KYC Verification</a></li>
           <li><a class="as-sublink" href="#">Pre-approval</a></li>
+          <li><a class="as-sublink" href="/admin/applications/h-loan-applications.php">Home Loan Applications</a></li>
         </ul>
       </li>
       <li class="has-sub">
@@ -76,7 +77,7 @@
         <ul class="as-sub">
           <li><a class="as-sublink" href="#">General</a></li>
           <li><a class="as-sublink" href="#">Integrations</a></li>
-          <li><a class="as-sublink" href="#">Notifications</a></li>
+          <li><a class="as-sublink" href="#">SMTP Settings</a></li>
         </ul>
       </li>
       <li><a class="as-link" href="#"><span class="as-ico">📝</span><span class="as-lbl">Audit Logs</span></a></li>
@@ -97,17 +98,22 @@
 .as-logo{color:#fff;text-decoration:none;font-weight:700;letter-spacing:.3px}
 .as-nav{flex:1 1 auto;overflow-y:auto;overflow-x:hidden;padding:10px 8px}
 .as-nav ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
-.as-link{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;text-decoration:none;color:var(--as-text);font-size:14px;font-weight:600}
+.as-link{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;text-decoration:none;color:var(--as-text);font-size:14px;font-weight:600;border:1px solid transparent}
 .as-link.active{background:rgba(34,197,94,.12);color:#c3ffe0}
 .as-link:hover{background:var(--as-hover)}
 .as-ico{width:22px;min-width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center}
 .as-lbl{white-space:nowrap}
 .has-sub .as-toggle{width:100%;text-align:left;background:transparent;border:0}
+.has-sub.open > .as-toggle{background:rgba(34,197,94,.12);border-color:rgba(34,197,94,.25);color:#c3ffe0;box-shadow:0 8px 18px rgba(2,6,23,.25)}
+.has-sub.open > .as-toggle .as-ico{color:#22c55e}
 .as-caret{margin-left:auto;width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:6px solid var(--as-muted);transition:transform .2s ease}
 .has-sub.open .as-caret{transform:rotate(180deg)}
-.as-sub{list-style:none;margin:0;padding:0 0 6px 38px;max-height:0;overflow:hidden;transition:max-height .25s ease}
-.as-sublink{display:block;padding:8px 10px;color:var(--as-muted);text-decoration:none;border-radius:8px;font-size:13px;font-weight:600}
-.as-sublink:hover{background:#0b1221;color:#d1d5db}
+.as-sub{list-style:none;margin:6px 8px;padding:8px 10px 8px 44px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-left:2px solid #22c55e;border-radius:12px;max-height:0;overflow:hidden;opacity:0;transform:translateY(-6px);transition:max-height .25s ease, opacity .25s ease, transform .25s ease}
+.has-sub.open .as-sub{opacity:1;transform:translateY(0)}
+.as-sublink{position:relative;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 10px;color:var(--as-muted);text-decoration:none;border-radius:8px;font-size:13px;font-weight:600}
+.as-sublink::before{content:"";position:absolute;left:-18px;top:50%;transform:translateY(-50%);width:6px;height:6px;border-radius:50%;background:#22c55e;opacity:.55}
+.as-sublink:hover{background:#0d1831;color:#e2e8f0}
+.as-sublink .badge{display:inline-flex;align-items:center;padding:4px 8px;border-radius:999px;font-size:11px;font-weight:700;background:rgba(47,111,237,.14);color:#9ec1ff;border:1px solid rgba(47,111,237,.23)}
 .admin-sidebar::-webkit-scrollbar{width:10px}
 .admin-sidebar::-webkit-scrollbar-track{background:#0b1221}
 .admin-sidebar::-webkit-scrollbar-thumb{background:#1e293b;border-radius:10px;border:2px solid #0b1221}

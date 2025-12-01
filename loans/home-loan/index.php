@@ -12,38 +12,9 @@ $fullTitle = $seoTitle.' - '.$seoBrand;
 $seoDescription = 'Apply for a home loan online. Compare benefits and submit your details securely. Mobile responsive, easy and quick form.';
 $ogImagePath = '/assets/img/hero/personal-loan-upto-50-lakhs.png';
 $ogImage = $origin . $ogImagePath;
-$submitted = false;
-$error = '';
-$successMsg = '';
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $name = isset($_POST['name']) ? trim($_POST['name']) : '';
-  $mobile = isset($_POST['mobile']) ? preg_replace('/[^0-9]/','', $_POST['mobile']) : '';
-  $email = isset($_POST['email']) ? trim($_POST['email']) : '';
-  $city = isset($_POST['city']) ? trim($_POST['city']) : '';
-  $employment = isset($_POST['employment']) ? trim($_POST['employment']) : '';
-  $income = isset($_POST['income']) ? floatval($_POST['income']) : 0.0;
-  $property_value = isset($_POST['property_value']) ? floatval($_POST['property_value']) : 0.0;
-  $loan_amount = isset($_POST['loan_amount']) ? floatval($_POST['loan_amount']) : 0.0;
-  $tenure_years = isset($_POST['tenure_years']) ? intval($_POST['tenure_years']) : 0;
-  if ($name && $mobile && strlen($mobile) >= 10 && filter_var($email, FILTER_VALIDATE_EMAIL) && $city && $tenure_years > 0 && $loan_amount > 0) {
-    $submitted = true;
-    $successMsg = 'Your home loan request has been submitted.';
-    if (file_exists(__DIR__.'/../../database/db-config.php')) {
-      require_once __DIR__.'/../../database/db-config.php';
-      if (function_exists('db')) {
-        try {
-          $pdo = db();
-          $pdo->exec("CREATE TABLE IF NOT EXISTS home_loan_applications (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(150), mobile VARCHAR(20), email VARCHAR(150), city VARCHAR(150), employment VARCHAR(50), income DECIMAL(12,2), property_value DECIMAL(12,2), loan_amount DECIMAL(12,2), tenure_years INT, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)");
-          $stmt = $pdo->prepare("INSERT INTO home_loan_applications (name, mobile, email, city, employment, income, property_value, loan_amount, tenure_years) VALUES (?,?,?,?,?,?,?,?,?)");
-          $stmt->execute([$name,$mobile,$email,$city,$employment,$income,$property_value,$loan_amount,$tenure_years]);
-        } catch (Throwable $e) {
-        }
-      }
-    }
-  } else {
-    $error = 'Please fill all required fields correctly.';
-  }
-}
+$submitted = isset($_GET['success']);
+$error = isset($_GET['error']) ? $_GET['error'] : '';
+$successMsg = 'Your home loan request has been submitted.';
 ?><!doctype html>
 <html lang="en">
 <head>
@@ -85,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="card-title">Apply for Home Loan</div>
             <?php if($error): ?><div class="alert alert-error"><?php echo htmlspecialchars($error, ENT_QUOTES); ?></div><?php endif; ?>
             <?php if($submitted && !$error): ?><div class="alert alert-success"><?php echo htmlspecialchars($successMsg, ENT_QUOTES); ?></div><?php endif; ?>
-            <form method="post" id="homeLoanForm" novalidate>
+            <form method="post" id="homeLoanForm" action="../../insert-db/home-loan-insert.php" novalidate>
               <div class="fields">
                 <div class="field-group">
                   <label for="name">Full name</label>
@@ -619,6 +590,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </section>
     </div>
   </section>
-  <?php include __DIR__.'/../../includes/footer.php'; ?>
 </body>
 </html>
