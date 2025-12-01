@@ -260,7 +260,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </section>
     </div>
   </section>
-  <?php include __DIR__.'/../../includes/footer.php'; ?>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
