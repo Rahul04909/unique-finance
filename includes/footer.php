@@ -108,8 +108,9 @@
   </div>
   <style>
   :root{--pbf-blue:#2f6fed;--pbf-bg:#0f1e4b;--pbf-surface:#1b2953;--pbf-text:#cbd5e1;--pbf-muted:#9fb0d6;--pbf-heading:#ffffff;--pbf-border:#24355f;--pbf-chip:#2b3e75;--pbf-chip-text:#e8efff;--pbf-green:#16a34a}
-  .pb-footer{background:var(--pbf-bg);color:var(--pbf-text); border-radius: 40px;}
-  .pbf-container{max-width:1200px;margin:0 auto;padding:28px 16px; border-radius: 40px;}
+  .pb-footer{background:var(--pbf-bg);color:var(--pbf-text);border-radius:40px;overflow:hidden}
+  .pb-footer *,.pb-footer *::before,.pb-footer *::after{box-sizing:border-box}
+  .pbf-container{max-width:1200px;margin:0 auto;padding:28px 16px}
   .pbf-top{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px;padding-bottom:18px;border-bottom:1px solid var(--pbf-border)}
   .pbf-heading{margin:0 0 12px 0;color:var(--pbf-heading);font-size:16px;font-weight:800;letter-spacing:.2px}
   .pbf-links{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}

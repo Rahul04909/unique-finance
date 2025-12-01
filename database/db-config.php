@@ -1,9 +1,9 @@
 <?php
 $DB_HOST = getenv('DB_HOST') ?: '127.0.0.1';
 $DB_PORT = getenv('DB_PORT') ?: '3306';
-$DB_NAME = getenv('DB_NAME') ?: 'dendyal';
-$DB_USER = getenv('DB_USER') ?: 'root';
-$DB_PASS = getenv('DB_PASS') ?: '';
+$DB_NAME = getenv('DB_NAME') ?: 'jghfrodu_unique-finance';
+$DB_USER = getenv('DB_USER') ?: 'jghfrodu_unique-finance';
+$DB_PASS = getenv('DB_PASS') ?: 'Rd14072003@./';
 $DB_CHARSET = getenv('DB_CHARSET') ?: 'utf8mb4';
 
 function db_config(): array {
