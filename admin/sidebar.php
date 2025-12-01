@@ -78,6 +78,7 @@
           <li><a class="as-sublink" href="#">General</a></li>
           <li><a class="as-sublink" href="#">Integrations</a></li>
           <li><a class="as-sublink" href="#">SMTP Settings</a></li>
+          <li><a class="as-sublink" href="/admin/seo/sitemap-generator.php">SEO & Sitemap</a></li>
         </ul>
       </li>
       <li><a class="as-link" href="#"><span class="as-ico">📝</span><span class="as-lbl">Audit Logs</span></a></li>
@@ -122,6 +123,8 @@
 .admin-sidebar.collapsed .as-lbl{display:none}
 .admin-sidebar.collapsed .as-sub{display:none}
 .admin-sidebar.collapsed .as-caret{display:none}
+.admin-sidebar + .admin-content{margin-left:var(--sidebar-width)}
+.admin-sidebar ~ .admin-content{margin-left:var(--sidebar-width)}
 </style>
 <script>
 (function(){

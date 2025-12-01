@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /vendor/
+Disallow: /database/
+Disallow: /insert-db/
+Disallow: /component/
+Disallow: /includes/
+Sitemap: /sitemap-index.xml
+Sitemap: /sitemap-1.xml.gz

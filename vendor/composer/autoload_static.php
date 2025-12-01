@@ -12,6 +12,10 @@ class ComposerStaticInit2185d2f99bcd56787481d9357a5972d3
     );
 
     public static $prefixLengthsPsr4 = array (
+        's' => 
+        array (
+            'samdark\\sitemap\\' => 16,
+        ),
         'W' => 
         array (
             'WpOrg\\Requests\\' => 15,
@@ -28,6 +32,10 @@ class ComposerStaticInit2185d2f99bcd56787481d9357a5972d3
     );
 
     public static $prefixDirsPsr4 = array (
+        'samdark\\sitemap\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/samdark/sitemap',
+        ),
         'WpOrg\\Requests\\' => 
         array (
             0 => __DIR__ . '/..' . '/rmccue/requests/src',
