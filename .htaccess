@@ -1,6 +1,7 @@
 Options -Indexes
 Options -MultiViews
 DirectoryIndex index.php
+ErrorDocument 404 /404.php
 RewriteEngine On
 RewriteBase /
 RewriteRule ^sitemap\.xml$ sitemap-index.xml [L]

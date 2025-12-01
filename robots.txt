@@ -6,5 +6,5 @@ Disallow: /database/
 Disallow: /insert-db/
 Disallow: /component/
 Disallow: /includes/
-Sitemap: /sitemap-index.xml
-Sitemap: /sitemap-1.xml.gz
+Sitemap: http://localhost/dendyal/sitemap-index.xml
+Sitemap: http://localhost/dendyal/sitemap-1.xml.gz
