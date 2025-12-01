@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/jghfrodu/uniquefinancegroup.com/
+    - /bin/cp -R * $DEPLOYPATH
